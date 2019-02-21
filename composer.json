@@ -1,0 +1,22 @@
+{
+    "name": "damienblaison/projet_5",
+    "require": {
+        "almasaeed2010/adminlte": "2.4.*",
+        "spipu/html2pdf": "^5.2"
+    },
+    "authors": [
+        {
+            "name": "Damien Blaison",
+            "email": "d.blaison@live.fr"
+        }
+    ],
+
+    "autoload": {
+
+        "psr-4": {
+
+            "Kalaweit\\": "src/Kalaweit/"
+
+    }
+  }
+}
