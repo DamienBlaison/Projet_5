@@ -16,11 +16,17 @@ class Specie
      */
 
 
-     public function getAll(\PDO $bdd){
+     public function getAll()
+     {
+        // $ret    = [];
+         $config = \Kalaweit\Core\Config::getInstance();
+         $specie   = $config->get('especes');
 
-        $species = $bdd->query("SELECT * FROM especes_id");
-        $species = $species->fetchAll(\PDO::FETCH_ASSOC);
+         //foreach ($cli_lang as $key => $value) {
+             //$ret[] = new \Kalaweit\Model\Cli_lang($key, $value);
+            // var_dump($key);
+         //}
+         return $specie;
 
-        return $species;
      }
 }

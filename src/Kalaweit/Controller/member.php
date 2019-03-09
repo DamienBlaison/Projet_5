@@ -12,15 +12,15 @@ class Member{
         $bddM = new \Kalaweit\Manager\Connexion();
         $bddM = $bddM->getBdd();
 
-        $countryM = new \Kalaweit\Manager\Country();
-        $langueM  = new \Kalaweit\Manager\Langue();
-        $Type_membreM  = new \Kalaweit\Manager\Type_membre();
+        $crm_countryM = new \Kalaweit\Manager\Crm_country();
+        $cli_langM  = new \Kalaweit\Manager\Cli_lang();
+        $crm_client_categoryM  = new \Kalaweit\Manager\Crm_client_category();
 
         $view           = new \Kalaweit\Core\View();
 
-        $view->assign('Country',         $countryM->getAll($bddM));
-        $view->assign('Langue',          $langueM->getAll($bddM));
-        $view->assign('Type_membre',     $Type_membreM->getAll($bddM));
+        $view->assign('crm_country',         $crm_countryM->getAll($bddM));
+        $view->assign('cli_lang',          $cli_langM->getAll($bddM));
+        $view->assign('crm_client_category',     $crm_client_categoryM->getAll($bddM));
 
         $member         = new \Kalaweit\Model\Member();
         $memberM        = new \Kalaweit\Manager\Member($bddM);
@@ -37,7 +37,15 @@ class Member{
         $bddM = new \Kalaweit\Manager\Connexion();
         $bddM = $bddM->getBdd();
 
+        $crm_countryM = new \Kalaweit\Manager\Crm_country();
+        $cli_langM  = new \Kalaweit\Manager\Cli_lang();
+        $crm_client_categoryM  = new \Kalaweit\Manager\Crm_client_category();
+
         $view           = new \Kalaweit\Core\View();
+
+        $view->assign('crm_country',         $crm_countryM->getAll($bddM));
+        $view->assign('cli_lang',          $cli_langM->getAll($bddM));
+        $view->assign('crm_client_category',     $crm_client_categoryM->getAll($bddM));
 
         $member         = new \Kalaweit\Model\Member();
         $memberM        = new \Kalaweit\Manager\Member($bddM);

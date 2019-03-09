@@ -193,7 +193,9 @@ class View
         }
         if (file_exists($this->file)) {
             ob_start();
+
             $data = $p_params;
+
             include $this->file;
 
             return ob_get_clean();

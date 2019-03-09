@@ -9,7 +9,7 @@ class Connexion
         $host = 'localhost';
         $user = "root";
         $pass = "root";
-        $db   = 'kalaweit';
+        $db   = 'kalaweitv2';
 
         $bdd = new \PDO("mysql:host=$host;dbname=$db;charset=utf8", $user,$pass);
 

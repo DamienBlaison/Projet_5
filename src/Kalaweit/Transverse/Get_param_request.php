@@ -40,7 +40,8 @@ trait Get_param_request
         $pagination = explode('/',$pagination[0]);
         $pagination = array_pop($pagination);
 
-        return $data = [$array_param_request,$pagination];
+        $data = [$array_param_request,$pagination];
 
+        return $data;
     }
 }

@@ -1,8 +1,8 @@
 <?php
 namespace Kalaweit\Transverse;
 /**
- *
- */
+*
+*/
 trait Get_param_post
 {
     function get_param_post()
@@ -13,7 +13,7 @@ trait Get_param_post
 
         foreach ($_POST as $key => $value) {
 
-            if ($value != NULl){
+            if ($value != NULL){
 
                 $param_post .= $key.' = :'.$key.' , ' ;
                 $set_array = [ ":$key" => $value ];
@@ -44,41 +44,112 @@ trait Get_param_post
         return $array_param_post;
 
     }
-    function get_param_post_add()
+    function get_param_post_update_member()
     {
+        $into_cli           = "";
+        $set_cli            = "";
+        $prepare_cli        = [];
 
-        $into       = "";
-        $set        = "";
-        $prepare    = [];
+        $into_clid          = "";
+        $set_clid           = "";
+        $prepare_clid       = [];
+
+        $array_set_cli_data =[];
 
         foreach ($_POST as $key => $value) {
 
-            if ($value != NULl){
+            $test_key = substr($key,0,6);
 
-                $into .= $key.', ';
-                $set  .= ':'.$key.', ';
+            if ($test_key === 'clitd_'){
 
-                $set_array = [ ":$key" => $value ];
+                $clitd_id = explode('_',$key);
 
-                $prepare = array_merge($prepare ,$set_array);
+                $field_clitd_id = $clitd_id[1];
+                $field_cld_valc = $value;
+
+                $set_cli_data = ["clitd_id" =>$field_clitd_id, "cld_valc"=>$field_cld_valc];
+                $array_set_cli_data []= $set_cli_data;
+
+            } else {
+
+                $into_cli .= $key.', ';
+                $set_cli  .= ':'.$key.', ';
+                $set_array_cli = [ ":$key" => $value ];
+                $prepare_cli = array_merge($prepare_cli ,$set_array_cli);
 
             }
 
+        }
+
+            $array_param_post_cli = [
+
+                "p_into_cli"    => $into_cli,
+                "p_set_cli"     => $set_cli,
+                "p_prepare_cli" => $prepare_cli
+
+            ];
+
+            $array_param_post = ["array_param_post_clid" => $array_set_cli_data, "array_param_post_cli" => $array_param_post_cli];
+
+            return $array_param_post;
+    }
+    function get_param_post_add_member()
+    {
+
+        $into_cli           = "";
+        $set_cli            = "";
+        $prepare_cli        = [];
+
+        $into_clid          = "";
+        $set_clid           = "";
+        $prepare_clid       = [];
+
+        $array_set_cli_data =[];
+
+        foreach ($_POST as $key => $value) {
+
+            $test_key = substr($key,0,6);
+
+            if ($test_key === 'clitd_'){
+
+                $clitd_id = explode('_',$key);
+
+                $field_clitd_id = $clitd_id[1];
+                $field_cld_valc = $value;
+
+                $set_cli_data = ["clitd_id" =>$field_clitd_id, "cld_valc"=>$field_cld_valc];
+                $array_set_cli_data []= $set_cli_data;
+
+            } else {
+
+                $into_cli .= $key.', ';
+                $set_cli  .= ':'.$key.', ';
+                $set_array_cli = [ ":$key" => $value ];
+                $prepare_cli = array_merge($prepare_cli ,$set_array_cli);
+
+            }
 
         }
 
-        $into = substr($into, 0 , -2);
-        $set  = substr($set, 0 , -2);
+        $into_cli = rtrim($into_cli," ,");
+        $set_cli  = rtrim($set_cli," ,");
 
-        $array_param_post = [
+            $array_param_post_cli = [
 
-            "p_into"    => $into,
-            "p_set"     => $set,
-            "p_prepare" => $prepare
+                "p_into_cli"    => $into_cli,
+                "p_set_cli"     => $set_cli,
+                "p_prepare_cli" => $prepare_cli
 
-        ];
+            ];
 
-        return $array_param_post;
+            $array_param_post = ["array_param_post_clid" => $array_set_cli_data, "array_param_post_cli" => $array_param_post_cli];
+
+            echo '<pre>';
+            var_dump($array_param_post);
+            echo '</pre>';
+            return $array_param_post;
+
+        }
+
 
     }
-}
